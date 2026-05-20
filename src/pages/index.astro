@@ -60,6 +60,7 @@ const drinks = [
 				{
 					drinks.map((drink, index) => {
 						const alignRight = index % 2 === 1;
+						const extraTextInset = index === 3;
 
 						return (
 							<article class="relative mx-auto w-full max-w-5xl">
@@ -71,7 +72,12 @@ const drinks = [
 								>
 									<div
 										class:list={[
-											'grid max-w-3xl items-end gap-3 sm:gap-5',
+											'grid max-w-3xl items-end gap-3 px-2 py-1 sm:gap-5 sm:px-3 sm:py-2',
+											extraTextInset
+												? alignRight
+													? 'mr-6 sm:mr-10 lg:mr-14'
+													: 'ml-6 sm:ml-10 lg:ml-14'
+												: '',
 											alignRight ? 'grid-cols-[1fr_auto]' : 'grid-cols-[auto_1fr]',
 										]}
 									>
@@ -115,7 +121,12 @@ const drinks = [
 									<img
 										src={gallery[index]}
 										alt={drink.name}
-										class="block max-h-[24rem] w-auto max-w-[88%] object-contain sm:max-h-[30rem] sm:max-w-[82%] lg:max-h-[38rem] lg:max-w-[78%]"
+										class:list={[
+											'block w-auto object-contain',
+											index === 3
+												? 'max-h-[20rem] max-w-[76%] sm:max-h-[24rem] sm:max-w-[70%] lg:max-h-[30rem] lg:max-w-[64%]'
+												: 'max-h-[24rem] max-w-[88%] sm:max-h-[30rem] sm:max-w-[82%] lg:max-h-[38rem] lg:max-w-[78%]',
+										]}
 									/>
 								</div>
 							</article>
